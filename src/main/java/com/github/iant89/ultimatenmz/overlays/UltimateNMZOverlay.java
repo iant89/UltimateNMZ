@@ -6,6 +6,8 @@ import com.github.iant89.ultimatenmz.utils.NumberUtils;
 import com.github.iant89.ultimatenmz.UltimateNMZConfig;
 import com.github.iant89.ultimatenmz.UltimateNMZPlugin;
 import net.runelite.api.*;
+import net.runelite.api.gameval.VarPlayerID;
+import net.runelite.api.gameval.VarbitID;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.ui.overlay.*;
@@ -111,9 +113,9 @@ public class UltimateNMZOverlay extends OverlayPanel {
 
         str = ColorUtil.prependColorTag(Integer.toString(currentHP), hpColor);
 
-        final int currentPoints = client.getVar(Varbits.NMZ_POINTS);
-        final int totalPoints = currentPoints + client.getVar(VarPlayer.NMZ_REWARD_POINTS);
-        final int absorptionPoints = client.getVar(Varbits.NMZ_ABSORPTION);
+        final int currentPoints = client.getVarbitValue(VarbitID.NZONE_CURRENTPOINTS);
+        final int totalPoints = currentPoints + client.getVarpValue(VarPlayerID.NZONE_REWARDPOINTS);
+        final int absorptionPoints = client.getVarbitValue(VarbitID.NZONE_ABSORB_POTION_EFFECTS);
 
         panelComponent.getChildren().add(LineComponent.builder().left("Session:").right(DurationUtils.toSessionTimeString(plugin.getSessionDuration())).rightColor(Color.GREEN).build());
         panelComponent.getChildren().add(LineComponent.builder().left("").build());

@@ -18,6 +18,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.*;
+import net.runelite.api.gameval.VarbitID;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.Notifier;
@@ -373,11 +374,11 @@ public class UltimateNMZPlugin extends Plugin {
 	}
 
 	private int getAbsorptionPoints() {
-		return client.getVar(Varbits.NMZ_ABSORPTION);
+		return client.getVarbitValue(VarbitID.NZONE_ABSORB_POTION_EFFECTS);
 	}
 
 	private void checkAbsorption() {
-		int absorptionPoints = client.getVar(Varbits.NMZ_ABSORPTION);
+		int absorptionPoints = client.getVarbitValue(VarbitID.NZONE_ABSORB_POTION_EFFECTS);
 
 		if(absorptionPoints < config.absorptionThreshold()) {
 			if(config.absorptionNotification()) {
@@ -437,7 +438,7 @@ public class UltimateNMZPlugin extends Plugin {
 
 	private int calculatePointsPerHour() {
 		Instant now = Instant.now();
-		final int currentPoints = client.getVar(Varbits.NMZ_POINTS);
+		final int currentPoints = client.getVarbitValue(VarbitID.NZONE_CURRENTPOINTS);
 
 		if (nmzSessionStartTime == null) {
 			nmzSessionStartTime = now;
